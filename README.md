@@ -35,22 +35,22 @@ Grafana: This visualization tool connects to Athena, enabling the creation of in
 
 **Pipeline Functionality:**
 
-		Data Ingestion: A Lambda function is triggered periodically (or based on an event) to fetch weather data from the chosen API.
+	Data Ingestion: A Lambda function is triggered periodically (or based on an event) to fetch weather data from the chosen API.
 
-		Data Streaming: The retrieved data is sent to Amazon Kinesis Firehose for continuous streaming.
+	Data Streaming: The retrieved data is sent to Amazon Kinesis Firehose for continuous streaming.
 
-		Data Storage: The Firehose delivers the data to an S3 bucket for raw data storage.
+	Data Storage: The Firehose delivers the data to an S3 bucket for raw data storage.
 
-		Schema Discovery: A Glue Crawler automatically discovers and defines the schema of the data stored in S3.
+	Schema Discovery: A Glue Crawler automatically discovers and defines the schema of the data stored in S3.
 
 	Data Transformation:
 		Glue ETL jobs are designed to:
 		Cleanse and transform the data as needed.
 		Perform data quality checks to ensure data integrity.
 
-Data Storage (Processed): The transformed data is saved to a new table in S3 using the Parquet format, optimized for analytics.
+	Data Storage (Processed): The transformed data is saved to a new table in S3 using the Parquet format, optimized for analytics.
 
-Data Analysis: Amazon Athena, when connected to Grafana Cloud, allows querying the processed weather data using standard SQL for further analysis and visualization.
+	Data Analysis: Amazon Athena, when connected to Grafana Cloud, allows querying the processed weather data using standard SQL for further analysis and visualization.
 
 **Benefits:**
 
