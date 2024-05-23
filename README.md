@@ -91,10 +91,11 @@ This serverless interactive query service allows us to analyze the transformed w
 **Grafana:**
 Grafana, a visualization tool, connects to Athena, enabling the creation of interactive dashboards to explore the weather data insights. You can leverage standard SQL queries within Grafana to visualize the processed data.
 
-While static images of the dashboard are be included below, the power of Grafana lies in its interactivity. To explore the dashboard functionalities directly, you can access a linked snapshot: 
+While static images of the dashboard are included below, the power of Grafana lies in its interactivity. To explore the dashboard functionalities directly, you can access a linked snapshot: 
 
 ([https://nickolasb98.grafana.net/dashboard/snapshot/1uXP8OvJex8ybSvKMYCoRaydwpI9eooa])
 
+The static snapshots as pdf files for a quick overview:
 
 <img width="1057" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/9c588c46-a12b-4fd4-afca-445e12d04130">
 
