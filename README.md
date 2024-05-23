@@ -15,17 +15,17 @@ This project leverages a serverless architecture on AWS to build a data pipeline
 
 **Amazon Kinesis Firehose:** Based on the invoked Lambda function, the Firehose can handle data in two ways:
 
-  **Batch Data:** If triggered by the Batch Data Lambda, the Firehose streams the prepared data in batches to its S3 destination.
+	Batch Data: If triggered by the Batch Data Lambda, the Firehose streams the prepared data in batches to its S3 destination.
  
-  **Continuous Data:** When triggered by the Continuous Data Lambda (at timed intervals), the Firehose continuously streams the real-time data to S3.
+  	Continuous Data: When triggered by the Continuous Data Lambda (at timed intervals), the Firehose continuously streams the real-time data to S3.
 
 **Amazon S3:** The firehose delivers the data to an S3 bucket for storage. Firehose automatically partitions the data in a proper way for Glue Crawler to discover the schema, in order to enable Athena to interactively SQL query the partitioned table.
 
 **AWS Glue:**
 
-  **Glue Crawler:** This automatically discovers and defines the schema of the weather data stored in S3.
+  	Glue Crawler: This automatically discovers and defines the schema of the weather data stored in S3.
   
-  **Glue ETL Workflow Orchestration:** We utilize Glue's capabilities to define and orchestrate the data transformation logic. A series of Glue jobs perform data transformations, data quality checks, and ultimately save the processed data to a new table stored as Parquet files.
+  	Glue ETL Workflow Orchestration: We utilize Glue's capabilities to define and orchestrate the data transformation logic. A series of Glue jobs perform data transformations, data quality checks, and ultimately save the processed data to a new table stored as Parquet files.
 		
 **Amazon Athena:** This serverless interactive query service allows us to analyze the transformed weather data using standard SQL queries.
 
