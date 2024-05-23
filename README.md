@@ -14,7 +14,9 @@ This project leverages a serverless architecture on AWS to build a data pipeline
 **Amazon S3:** The firehose delivers the data to an S3 bucket for storage.
 
 **AWS Glue:**
+
   **Glue Crawler:** This automatically discovers and defines the schema of the weather data stored in S3.
+  
   **Glue ETL Workflow Orchestration:** We utilize Glue's capabilities to define and orchestrate the data transformation logic.
 		
 **Amazon Athena:** This serverless interactive query service allows us to analyze the transformed weather data using standard SQL queries.
