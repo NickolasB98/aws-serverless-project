@@ -1,4 +1,4 @@
-A Severless AWS Project fetching weather data from an API, utilizing these AWS Services: Lambda, Kinesis Firehose, S3, Glue Crawler, Glue ETL Workflow Orchestration, Athena, and Grafana which was connected with AWS Athena, visualizing the transformed data by leveraging SQL queries.
+A Severless AWS Project fetching weather data from an API, utilizing these AWS Services: Lambda, Kinesis Firehose, S3, Glue Crawler, Glue ETL Workflow Orchestration, EventBridge as a Lambda Trigger, and CloudWatch Logs for monitoring the Lambda functions and ETL job scripts. The processed data is then visualized using Grafana connected to Athena for interactive exploration.
 
 **Project Architecture**
 ![Project Architecture](https://github.com/NickolasB98/aws_severless_project/assets/157819544/be0e17c5-8219-4e05-998f-49a3b3fcbaa6)
@@ -73,7 +73,9 @@ This serverless interactive query service allows us to analyze the transformed w
 
 
 **Grafana:**
-This visualization tool connects to Athena, enabling the creation of interactive dashboards through SQL queries, to explore the weather data insights.
+Grafana, a visualization tool, connects to Athena, enabling the creation of interactive dashboards to explore the weather data insights. You can leverage standard SQL queries within Grafana to visualize the processed data.
+
+While static images of the dashboard are be included below, the power of Grafana lies in its interactivity. To explore the dashboard functionalities directly, you can access a linked snapshot: [Grafana Dashboard Snapshot]([https://nickolasb98.grafana.net/dashboard/snapshot/1uXP8OvJex8ybSvKMYCoRaydwpI9eooa](https://nickolasb98.grafana.net/dashboard/snapshot/Ai88cLexmGBYYFXgAwDgwEasJz8C3c3W))
 
 
 <img width="1057" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/9c588c46-a12b-4fd4-afca-445e12d04130">
@@ -99,6 +101,13 @@ Data Transformation:
 Data Storage (Processed): The transformed data is saved to a new table in S3 using the Parquet format, optimized for analytics.
 
 Data Analysis: Amazon Athena, when connected to Grafana Cloud, allows querying the processed weather data using standard SQL for further analysis and visualization.
+
+Monitoring:
+
+This project utilizes AWS CloudWatch Logs for centralized monitoring of the data pipeline components. CloudWatch Logs capture details about:
+	**Lambda Function Execution:** Invocation time, duration, and any errors encountered during data ingestion.
+	**Glue ETL Job Execution:** Start and end times, completed job steps, and any errors during data transformation.
+By analyzing CloudWatch Logs, you can identify potential issues, monitor performance, and ensure the smooth operation of the pipeline.
 
 **Benefits:**
 
