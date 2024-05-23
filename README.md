@@ -3,7 +3,9 @@ A Severless AWS Project fetching weather data from an API, utilizing these AWS S
 **Project Architecture**
 ![Project Architecture](https://github.com/NickolasB98/aws_severless_project/assets/157819544/be0e17c5-8219-4e05-998f-49a3b3fcbaa6)
 
-This project leverages a serverless architecture on AWS to build a data pipeline for weather data.  Here's a breakdown of the key components and their roles:
+This project leverages a serverless architecture on AWS to build a data pipeline for weather data.  
+
+**Here's a breakdown of the key components and their roles:**
 
 Data Source: We are fetching weather data from an external API.
 
