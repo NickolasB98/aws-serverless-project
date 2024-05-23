@@ -54,10 +54,10 @@ Grafana: This visualization tool connects to Athena, enabling the creation of in
 
 **Benefits:**
 
-Scalability and Cost-Efficiency: Serverless architecture scales automatically based on data volume and minimizes infrastructure management costs.
+	Scalability and Cost-Efficiency: Serverless architecture scales automatically based on data volume and minimizes infrastructure management costs.
 
-Flexibility: The pipeline can be easily adapted to handle different weather APIs or data sources.
+	Flexibility: The pipeline can be easily adapted to handle different weather APIs or data sources.
 
-Automation: Data ingestion, transformation, and storage are automated, reducing manual intervention.
+	Automation: Data ingestion, transformation, and storage are automated, reducing manual intervention.
 
-Analytics Ready: The processed data in Parquet format is optimized for efficient querying with Athena.
+	Analytics Ready: The processed data in Parquet format is optimized for efficient querying with Athena.
