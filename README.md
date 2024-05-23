@@ -17,19 +17,17 @@ Open-meteo provides access through APIs to both historical and real-time weather
 
 **AWS Lambda Functions:**
 
-<img width="668" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/1903f229-5e12-44b4-98af-e9d8160c2984">
-
 **Batch Data Lambda:** This serverless function triggers upon new weather data batches arriving from the API. It likely pre-processes and prepares the data before sending it to the Kinesis Firehose for streaming.
 
-
- <img width="650" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/b7781362-ae96-4adc-992b-0fd11e29c91f">
+<img width="668" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/1903f229-5e12-44b4-98af-e9d8160c2984">
 
 **Continuous Data Lambda:** This function is triggered by AWS EventBridge at time intervals. It's designed to handle continuous streams of weather data, performing real-time processing before sending it to the Firehose.
+
+<img width="650" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/b7781362-ae96-4adc-992b-0fd11e29c91f">
 
 **Amazon Kinesis Firehose:**
 
 <img width="1043" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/e2c27d1a-f6f9-41f3-b948-e35b638fd78e">
-
 
 Based on the invoked Lambda function, the Firehose can handle data in two ways:
 
@@ -37,7 +35,8 @@ Based on the invoked Lambda function, the Firehose can handle data in two ways:
  
 **Continuous Data:** When triggered by the Continuous Data Lambda (at timed intervals), the Firehose continuously streams the real-time data to S3.
 
-AWS offers automated Firehose stream metrics, for Incoming bytes, Put Requests, Records or potential Throttled Records counts:
+AWS offers automated Firehose stream metrics, for Incoming bytes, Put Requests, Records or potential Throttled Records counts,etc. :
+
 <img width="1010" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/7136c90c-eeff-4694-b080-14871b26f9b6">
 
 **Amazon S3:**
@@ -72,16 +71,19 @@ Both data are fetched by the same Firehose.
 **AWS Glue:**
 
 **Glue Crawler:** 
+
 This automatically discovers and defines the schema of the weather data stored in S3.
 
 <img width="1064" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/93a7db7d-bff3-46ea-89dc-a57b32aeab63">
 
 **Glue ETL Workflow Orchestration:** 
+
 We utilize Glue's capabilities to define and orchestrate the data transformation logic. A series of Glue jobs perform data transformations, data quality checks, and ultimately save the processed data to a new table stored as Parquet files.
 
 <img width="1058" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/f488cf8f-487b-4577-a521-be719e0c5a91">
 
 **Amazon Athena:**
+
 This serverless interactive query service allows us to analyze the transformed weather data using standard SQL queries.
 
 <img width="1282" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/60e91fc8-13f6-4b06-87d4-cbe61e6f9553">
@@ -89,6 +91,7 @@ This serverless interactive query service allows us to analyze the transformed w
 <img width="912" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/19401e2c-8a25-4d34-8717-8b4d5db2da79">
 
 **Grafana:**
+
 Grafana, a visualization tool, connects to Athena, enabling the creation of interactive dashboards to explore the weather data insights. You can leverage standard SQL queries within Grafana to visualize the processed data.
 
 While static images of the dashboard are included below, the power of Grafana lies in its interactivity. To explore the dashboard functionalities directly, you can access a linked snapshot: 
@@ -122,7 +125,6 @@ Data Storage (Processed): The transformed data is saved to a new table in S3 usi
 Data Analysis: Amazon Athena, when connected to Grafana Cloud, allows querying the processed weather data using standard SQL for further analysis and visualization.
 
 Monitoring:
-
 This project utilizes AWS CloudWatch Logs for centralized monitoring of the data pipeline components. CloudWatch Logs capture details about:
 	Lambda Function Execution: Invocation time, duration, and any errors encountered during data ingestion.
 	Glue ETL Job Execution: Start and end times, completed job steps, and any errors during data transformation.
