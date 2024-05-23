@@ -7,7 +7,8 @@ This project leverages a serverless architecture on AWS to build a data pipeline
 
 **Here's a breakdown of the key components and their roles:**
 
-Data Source: We are fetching weather data from an external API.
+Data Source: The data originates from the [open-meteo.com] API ([([https://open-meteo.com/en/docs](https://open-meteo.com/en/docs/historical-weather-api#latitude=53.2192&longitude=6.5667&start_date=2024-03-01&end_date=2024-05-15&hourly=&daily=temperature_2m_max,temperature_2m_min,temperature_2m_mean,daylight_duration,sunshine_duration,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=Europe%2FBerlin))]). This API provides access to historical weather data for Groningen,NL the city I obtained my MSc degree. 
+Open-meteo provides access through APIs to both historical and real-time weather data for various locations around the world.
 
 AWS Lambda Functions:
 
