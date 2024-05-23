@@ -60,7 +60,7 @@ Buckets named like aws-athena-query-results-** / `store-query-results-for-athena
 
 #### Firehose Partitioning into the S3:
 
-The Kinesis Firehose automatically partitions the data as it delivers it to S3 buckets. This partitioning helps Glue Crawler efficiently discover the schema of the data. Each partition likely represents a specific time period or data segment, making it easier to query and analyze specific weather data ranges using Athena later.
+The Kinesis Firehose automatically partitions the data as it delivers it to S3 buckets. This partitioning helps Glue Crawler efficiently discover the schema of the data. Each partition represents a specific time period or data segment, making it easier to query and analyze specific weather data ranges using Athena later.
 
 By utilizing different S3 buckets for various data stages, the project maintains a clear separation between raw, processed, and final weather data. This organization simplifies data retrieval for analysis and ensures efficient querying with Athena.
 
