@@ -47,29 +47,29 @@ This visualization tool connects to Athena, enabling the creation of interactive
 
 **Pipeline Functionality:**
 
-	Data Ingestion: A Lambda function is triggered periodically (or based on an event) to fetch weather data from the chosen API.
+Data Ingestion: A Lambda function is triggered periodically (or based on an event) to fetch weather data from the chosen API.
 
-	Data Streaming: The retrieved data is sent to Amazon Kinesis Firehose for continuous streaming.
+Data Streaming: The retrieved data is sent to Amazon Kinesis Firehose for continuous streaming.
 
-	Data Storage: The Firehose delivers the data to an S3 bucket for raw data storage.
+Data Storage: The Firehose delivers the data to an S3 bucket for raw data storage.
 
-	Schema Discovery: A Glue Crawler automatically discovers and defines the schema of the data stored in S3.
+Schema Discovery: A Glue Crawler automatically discovers and defines the schema of the data stored in S3.
 
-	Data Transformation:
-		Glue ETL jobs are designed to:
-		Cleanse and transform the data as needed.
-		Perform data quality checks to ensure data integrity.
+Data Transformation:
+	Glue ETL jobs are designed to:
+	Cleanse and transform the data as needed.
+	Perform data quality checks to ensure data integrity.
 
-	Data Storage (Processed): The transformed data is saved to a new table in S3 using the Parquet format, optimized for analytics.
+Data Storage (Processed): The transformed data is saved to a new table in S3 using the Parquet format, optimized for analytics.
 
-	Data Analysis: Amazon Athena, when connected to Grafana Cloud, allows querying the processed weather data using standard SQL for further analysis and visualization.
+Data Analysis: Amazon Athena, when connected to Grafana Cloud, allows querying the processed weather data using standard SQL for further analysis and visualization.
 
 **Benefits:**
 
-	Scalability and Cost-Efficiency: Serverless architecture scales automatically based on data volume and minimizes infrastructure management costs.
+Scalability and Cost-Efficiency: Serverless architecture scales automatically based on data volume and minimizes infrastructure management costs.
 
-	Flexibility: The pipeline can be easily adapted to handle different weather APIs or data sources.
+Flexibility: The pipeline can be easily adapted to handle different weather APIs or data sources.
 
-	Automation: Data ingestion, transformation, and storage are automated, reducing manual intervention.
+Automation: Data ingestion, transformation, and storage are automated, reducing manual intervention.
 
-	Analytics Ready: The processed data in Parquet format is optimized for efficient querying with Athena.
+Analytics Ready: The processed data in Parquet format is optimized for efficient querying with Athena.
