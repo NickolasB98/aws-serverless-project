@@ -9,9 +9,9 @@ Data Source: We are fetching weather data from an external API.
 
 AWS Lambda Functions:
 
-	Batch Data Lambda: This serverless function triggers upon new weather data batches arriving from the API. It likely pre-processes and prepares the data before sending it to 	the Kinesis Firehose for streaming.
+	Batch Data Lambda: This serverless function triggers upon new weather data batches arriving from the API. It likely pre-processes and prepares the data before sending it to the Kinesis Firehose for streaming.
 
-	Continuous Data Lambda: This function is triggered by AWS EventBridge at time intervals. It's designed to handle continuous streams of weather data, performing real-time 	processing before sending it to the Firehose.
+	Continuous Data Lambda: This function is triggered by AWS EventBridge at time intervals. It's designed to handle continuous streams of weather data, performing real-time processing before sending it to the Firehose.
 
 Amazon Kinesis Firehose: Based on the invoked Lambda function, the Firehose can handle data in two ways:
 
