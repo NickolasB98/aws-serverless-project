@@ -55,7 +55,7 @@ Both data are fetched by the same Firehose.
 **Glue Crawler:** 
 This automatically discovers and defines the schema of the weather data stored in S3.
 
-   	<img width="1064" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/93a7db7d-bff3-46ea-89dc-a57b32aeab63">
+<img width="1064" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/93a7db7d-bff3-46ea-89dc-a57b32aeab63">
 
 
 **Glue ETL Workflow Orchestration:** 
