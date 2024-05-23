@@ -42,13 +42,32 @@ AWS offers automated Firehose stream metrics, for Incoming bytes, Put Requests, 
 
 **Amazon S3:**
 
-The firehose delivers the data to an S3 bucket for storage. Firehose automatically partitions the data in a proper way for Glue Crawler to discover the schema, in order to later enable Athena to interactively SQL query the partitioned table.
+Amazon S3 serves as the storage layer for this project, housing the weather data at various stages of the pipeline. Here's a breakdown of the different S3 buckets and their purposes:
+
+#### Weather Data Buckets:
+
+weather-(batch)data-bucket: These buckets store the raw, unprocessed weather data received from the Open-Meteo API. The data format might be JSON, CSV, or the original format provided by the API. These buckets might be named with timestamps or identifiers indicating the time period of the data (e.g., May 2024).
+
+#### Processed Data Buckets:
+
+open-meteo-weather-batch-data-parquet-bucket/: These buckets contain historical weather data that has been processed and converted into the Parquet format by ETL job scripts. Parquet is columnar and optimized for efficient querying with Athena, making it ideal for later analysis.
+
+parquet-weather-table-prod/: These buckets hold the final, transformed weather data stored in Parquet format, making the final product of the ETL Workflow. This is the data readily available for querying and analysis with Athena and potentially for visualization with Grafana.
+
+#### Temporary Buckets:
+
+Buckets named like aws-athena-query-results-** / `store-query-results-for-athena-** are be used temporarily to store the results of Athena queries. Depending on the configuration, these buckets could be automatically cleaned up after a set period.
+
+#### Firehose Partitioning into the S3:
+
+The Kinesis Firehose automatically partitions the data as it delivers it to S3 buckets. This partitioning helps Glue Crawler efficiently discover the schema of the data. Each partition likely represents a specific time period or data segment, making it easier to query and analyze specific weather data ranges using Athena later.
+
+By utilizing different S3 buckets for various data stages, the project maintains a clear separation between raw, processed, and final weather data. This organization simplifies data retrieval for analysis and ensures efficient querying with Athena.
 
 This is a snapshot of all my S3 buckets, for both the historical batch weather data, and the continuous incoming weather data triggered by the EventBridge.
 Both data are fetched by the same Firehose.
 
 <img width="1019" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/385db9fb-3528-420d-8707-e89e484c627a">
-
 
 **AWS Glue:**
 
@@ -57,20 +76,17 @@ This automatically discovers and defines the schema of the weather data stored i
 
 <img width="1064" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/93a7db7d-bff3-46ea-89dc-a57b32aeab63">
 
-
 **Glue ETL Workflow Orchestration:** 
 We utilize Glue's capabilities to define and orchestrate the data transformation logic. A series of Glue jobs perform data transformations, data quality checks, and ultimately save the processed data to a new table stored as Parquet files.
 
 <img width="1058" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/f488cf8f-487b-4577-a521-be719e0c5a91">
 
-		
 **Amazon Athena:**
 This serverless interactive query service allows us to analyze the transformed weather data using standard SQL queries.
 
 <img width="1282" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/60e91fc8-13f6-4b06-87d4-cbe61e6f9553">
 
 <img width="912" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/19401e2c-8a25-4d34-8717-8b4d5db2da79">
-
 
 **Grafana:**
 Grafana, a visualization tool, connects to Athena, enabling the creation of interactive dashboards to explore the weather data insights. You can leverage standard SQL queries within Grafana to visualize the processed data.
@@ -105,8 +121,8 @@ Data Analysis: Amazon Athena, when connected to Grafana Cloud, allows querying t
 Monitoring:
 
 This project utilizes AWS CloudWatch Logs for centralized monitoring of the data pipeline components. CloudWatch Logs capture details about:
-	**Lambda Function Execution:** Invocation time, duration, and any errors encountered during data ingestion.
-	**Glue ETL Job Execution:** Start and end times, completed job steps, and any errors during data transformation.
+	Lambda Function Execution: Invocation time, duration, and any errors encountered during data ingestion.
+	Glue ETL Job Execution: Start and end times, completed job steps, and any errors during data transformation.
 By analyzing CloudWatch Logs, you can identify potential issues, monitor performance, and ensure the smooth operation of the pipeline.
 
 **Benefits:**
