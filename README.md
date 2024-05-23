@@ -1,0 +1,1 @@
+A Severless AWS Project fetching weather data from an API, utilizing these AWS Services: Lambda, Kinesis Firehose, S3, Glue Crawler, Glue ETL Workflow Orchestration, Athena, and Grafana which was connected with AWS Athena, visualizing the transformed data by leveraging SQL queries.
