@@ -55,7 +55,7 @@ parquet-weather-table-prod/: These buckets hold the final, transformed weather d
 
 #### Temporary Buckets:
 
-Buckets named like aws-athena-query-results-** / `store-query-results-for-athena-** are be used temporarily to store the results of Athena queries. Depending on the configuration, these buckets could be automatically cleaned up after a set period.
+Buckets named like aws-athena-query-results-** / `store-query-results-for-athena-** are used temporarily to store the results of Athena queries. Depending on the configuration, these buckets could be automatically cleaned up after a set period.
 
 #### Firehose Partitioning into the S3:
 
