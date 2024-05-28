@@ -17,7 +17,7 @@ Open-meteo provides access through APIs to both historical and real-time weather
 
 **AWS Lambda Functions:**
 
-**Batch Data Lambda:** This serverless function triggers upon new weather data batches arriving from the API. It likely pre-processes and prepares the data before sending it to the Kinesis Firehose for streaming.
+**Batch Data Lambda:** This serverless function triggers upon new weather data batches arriving from the API. It pre-processes and prepares the data before sending it to the Kinesis Firehose for streaming.
 
 <img width="668" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/1903f229-5e12-44b4-98af-e9d8160c2984">
 
