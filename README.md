@@ -96,7 +96,7 @@ Grafana, a visualization tool, connects to Athena, enabling the creation of inte
 
 While static images of the dashboard are included below, the power of Grafana lies in its interactivity. To explore the dashboard functionalities directly, you can access a linked snapshot: 
 
-(https://nickolasb98.grafana.net/dashboard/snapshot/POsx7Ww1lMoknujG1IL6aMDNKK2Taems)
+(https://nickolasb98.grafana.net/dashboard/snapshot/SDLKIeLKJiQ4cirQe1xWQbRqjUk21J1D)
 
 The static snapshots as pdf files for a quick overview:
 
