@@ -5,6 +5,8 @@ A Serverless AWS Project fetching weather data from an API, utilizing these AWS 
 
 This project leverages a serverless architecture on AWS to build a data pipeline for weather data.  
 
+**The project's interactive snapshot of final visualizations in Grafana: (https://nickolasb98.grafana.net/dashboard/snapshot/sM6inVnxCxhTrc4XtJclzWJlu6wmu7vx)**
+
 **Here's a breakdown of the key components and their roles:**
 
 Data Source: 
@@ -94,9 +96,7 @@ This serverless interactive query service allows us to analyze the transformed w
 
 Grafana, a visualization tool, connects to Athena, enabling the creation of interactive dashboards to explore the weather data insights. You can leverage standard SQL queries within Grafana to visualize the processed data.
 
-While static images of the dashboard are included below, the power of Grafana lies in its interactivity. To explore the dashboard functionalities directly, you can access a linked snapshot: 
 
-(https://nickolasb98.grafana.net/dashboard/snapshot/SDLKIeLKJiQ4cirQe1xWQbRqjUk21J1D)
 
 The static snapshots as pdf files for a quick overview:
 
