@@ -169,7 +169,7 @@ An ETL job example written in Python, which wraps a SQL query in order to create
 
 This ETL script uses Amazon Athena and S3 to create a table for storing the processed weather data in a Parquet format. It checks if a table named open_meteo_historical_weather_data_parquet_tbl exists, and if not, it creates it. It selects data from an existing table and transforms it —for example, converting temperatures to Fahrenheit and converting durations from seconds to hours. The data is partitioned by year, month, day, and hour, based on the capture time. Finally, the output is stored in the S3 bucket for processed data.
 
-The Forecast Weather Pipeline is different as it gets triggered every time an object has been added in the S3 bucket designated for the forecast weather data captured by the API using the get-real-time-weather-data function. This triggering rule helps ensure that the weekly forecast data has been successfully reached their S3 destination bucket after getting consumed by the Data Firehose. This is called an Event based trigger. After this event, the workflow is automatically running to reach the production level table.
+The Forecast Weather Pipeline works differently by being triggered whenever a new object is added to the designated S3 bucket for forecast weather data. This trigger occurs after data from the API is captured and processed using the get-real-time-weather-data function, ensuring that the weekly forecast data is successfully stored. This event-based trigger automatically starts the workflow, ultimately updating the production-level table.
 
 <img width="1098" alt="image" src="https://github.com/user-attachments/assets/b3fb632f-520d-44a8-9203-68aac32d1c18">
 
