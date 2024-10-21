@@ -117,7 +117,7 @@ It also has a Starting Trigger that can be connected to EventBridge events.
 An ETL job example written in Python, which wraps a SQL query in order to create the Parquet historical weather table.
 
 **create-parquet-historical-weather-table**
-'''
+
 
 	import boto3
 	
@@ -165,7 +165,7 @@ An ETL job example written in Python, which wraps a SQL query in order to create
 	)
 	
 	print(f"Query execution started. Check Athena console for details.")
-"""
+
 
 This ETL script uses Amazon Athena and S3 to create a table for storing the processed weather data in a Parquet format. It checks if a table named open_meteo_historical_weather_data_parquet_tbl exists, and if not, it creates it. It selects data from an existing table and transforms it —for example, converting temperatures to Fahrenheit and converting durations from seconds to hours. The data is partitioned by year, month, day, and hour, based on the capture time. Finally, the output is stored in the S3 bucket for processed data.
 
