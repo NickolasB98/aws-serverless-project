@@ -13,7 +13,7 @@ This project leverages a serverless architecture on AWS to build two data pipeli
 
 **Here's a breakdown of the key components and their roles:**
 
-Data Source: 
+**Data Source:** 
 
 <img width="1191" alt="image" src="https://github.com/user-attachments/assets/dd003295-a8a0-4835-a1ab-43d664e0346f">
 
