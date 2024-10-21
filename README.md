@@ -5,7 +5,11 @@ A Serverless AWS Project fetching weather data from an API, utilizing these AWS 
 
 This project leverages a serverless architecture on AWS to build two data pipelines for weather data.  
 
-**The project's interactive snapshot of historical weather visualizations in Grafana: (https://nickolasb98.grafana.net/dashboard/snapshot/sM6inVnxCxhTrc4XtJclzWJlu6wmu7vx)**
+##### The project's interactive snapshot of Historical weather visualizations in Grafana: 
+[https://nickolasb98.grafana.net/dashboard/snapshot/m4CRJegtK7BHuHdACZ2LzTgdeiiMYUdi]
+
+##### The project's interactive snapshot of Forecast weather visualizations in Grafana: 
+[https://nickolasb98.grafana.net/dashboard/snapshot/dDK8XqEN93xn5XqgJQvvfUwl7g7j3Xul]
 
 **Here's a breakdown of the key components and their roles:**
 
@@ -174,26 +178,44 @@ This is a snapshot of the EventBridge rule that triggers our pipeline.
 <img width="1043" alt="image" src="https://github.com/user-attachments/assets/1a60d965-8c00-42fe-9ac0-73b3ef9337b8">
 
 
-
 **Amazon Athena:**
 
 This serverless interactive query service allows us to analyze the transformed weather data using standard SQL queries.
 
-<img width="1282" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/60e91fc8-13f6-4b06-87d4-cbe61e6f9553">
+<img width="1360" alt="image" src="https://github.com/user-attachments/assets/87d6c4f8-c023-44f4-bba3-2620e950c0cc">
 
-<img width="912" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/19401e2c-8a25-4d34-8717-8b4d5db2da79">
 
 **Grafana:**
 
-Grafana, a visualization tool, connects to Athena, enabling the creation of interactive dashboards to explore the weather data insights. You can leverage standard SQL queries within Grafana to visualize the processed data.
-
+Grafana, a visualization tool, connects to Athena, enabling the creation of interactive dashboards to explore the weather data insights. You can leverage standard SQL queries within Grafana to visualize the processed data. The queries are exectuted directly in Athena and can be found also in the Recent Queries tab.
 
 
 The static snapshots as pdf files for a quick overview:
 
-<img width="1057" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/9c588c46-a12b-4fd4-afca-445e12d04130">
+### Severless AWS Project Groningen's Historical Weather Dashboard
 
-<img width="1069" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/9cbc1248-523b-4ad6-9e85-ed60bed9836d">
+<img width="1426" alt="image" src="https://github.com/user-attachments/assets/1e2b6406-1e6f-4097-beca-a33f8edd2dcc">
+
+<img width="1402" alt="image" src="https://github.com/user-attachments/assets/6a071520-4511-45cd-9384-60a433fbfde6">
+
+<img width="1411" alt="image" src="https://github.com/user-attachments/assets/d5ac6cc5-dc27-4a95-9915-b1418466d511">
+
+<img width="1405" alt="image" src="https://github.com/user-attachments/assets/502c6c94-994e-4125-b0e5-edfd9bd859ac">
+
+<img width="1410" alt="image" src="https://github.com/user-attachments/assets/f2b1d0d2-2e5d-4c99-921a-4cda556a7ead">
+
+<img width="1409" alt="image" src="https://github.com/user-attachments/assets/fa8a3fc0-38a5-4eb3-b39a-710ae98c48aa">
+
+### Severless AWS Project Groningen's Weekly Forecast Weather Dashboard
+
+<img width="1418" alt="image" src="https://github.com/user-attachments/assets/7a20267e-1975-443c-b871-55f6599f4877">
+
+<img width="1404" alt="image" src="https://github.com/user-attachments/assets/0c45cd17-6c1d-4285-815d-c4d89e4ccf7e">
+
+<img width="1410" alt="image" src="https://github.com/user-attachments/assets/24814b23-c459-4bf6-9f7b-d940bdb1a6db">
+
+<img width="1400" alt="image" src="https://github.com/user-attachments/assets/d7bc9b35-b696-474d-99dd-974c4bf2a403">
+
 
 
 **Pipeline Functionality:**
@@ -210,6 +232,16 @@ Data Transformation:
 	Glue ETL jobs are designed to:
 	Cleanse and transform the data as needed.
 	Perform data quality checks to ensure data integrity.
+
+Data Quality Checks:
+
+The completeness checks include verifying if any key columns have missing values, such as temperature, daylight duration, sunshine duration, precipitation, wind speed, wind gusts, and row timestamps. For each column, it counts the number of missing values.
+
+The extreme values checks evaluate whether certain values fall outside of expected ranges. 
+
+Temperature values below -30°C or above 50°C.
+Wind speeds exceeding 100 km/h.
+Negative precipitation values.
 
 Data Storage (Processed): The transformed data is saved to a new table in S3 using the Parquet format, optimized for analytics.
 
