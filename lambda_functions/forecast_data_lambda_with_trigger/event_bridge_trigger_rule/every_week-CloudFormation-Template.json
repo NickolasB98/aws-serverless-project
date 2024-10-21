@@ -1,0 +1,23 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge Ruleevery_week",
+  "Resources": {
+    "Rule640a9aa5": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Name": "every_week",
+        "ScheduleExpression": "rate(7 days)",
+        "State": "ENABLED",
+        "Description": "triggers the lambda function to run once a week to get the next 7 days weather forecast",
+        "EventBusName": "default",
+        "Targets": [{
+          "Id": "Idc6c4c968-6bb8-4f4e-a419-17ec5d525a8e",
+          "Arn": {
+            "Fn::Sub": "arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:get-real-time-weather-data"
+          }
+        }]
+      }
+    }
+  },
+  "Parameters": {}
+}

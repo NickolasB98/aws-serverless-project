@@ -8,13 +8,13 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: An AWS Serverless Application Model template describing your function.
 Resources:
-  getbatchweatherdata:
+  getrealtimeweatherdata:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
       Description: ''
       MemorySize: 128
-      Timeout: 10
+      Timeout: 20
       Handler: lambda_function.lambda_handler
       Runtime: python3.12
       Architectures:
@@ -33,6 +33,11 @@ Resources:
               Resource: '*'
             - Effect: Allow
               Action:
+                - s3:*
+                - s3-object-lambda:*
+              Resource: '*'
+            - Effect: Allow
+              Action:
                 - logs:CreateLogGroup
               Resource: arn:aws:logs:us-east-1:339712981099:*
             - Effect: Allow
@@ -41,8 +46,14 @@ Resources:
                 - logs:PutLogEvents
               Resource:
                 - >-
-                  arn:aws:logs:us-east-1:339712981099:log-group:/aws/lambda/get-weather-data:*
+                  arn:aws:logs:us-east-1:339712981099:log-group:/aws/lambda/get-batch-weather-data:*
+      RecursiveLoop: Terminate
       SnapStart:
         ApplyOn: None
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(7 days)
       RuntimeManagementConfig:
         UpdateRuntimeOn: Auto
