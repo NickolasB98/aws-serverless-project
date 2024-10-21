@@ -87,7 +87,7 @@ Both data are fetched by the same Firehose.
 
 **Glue Crawler:** 
 
-Crawler automatically discovers and defines the schema of the weather data stored in S3. It also creates the table's partitions based on the different subfolders already created by the Firehose. ( Year / Month / Week ) The created tables have their schema already correctly defined and the parquet formatted data can be partitioned effectively leading to faster queries and lower costs.
+Crawler automatically discovers and defines the schema of the weather data stored in S3. It also creates the table's partitions based on the different subfolders already created by the Firehose. **('capture_year', 'capture_month', 'capture_day', 'capture_hour')** The created tables have their schema already correctly defined and the parquet formatted data can be partitioned effectively leading to faster queries and lower costs.
 
 Historical Weather Crawler:
 
@@ -102,7 +102,78 @@ Forecast Weather Crawler:
 
 We utilize Glue's capabilities to define and orchestrate the data transformation logic. A series of Glue jobs perform data transformations, data quality checks, and ultimately save the processed data to a new table stored as Parquet files.
 
-<img width="1058" alt="image" src="https://github.com/NickolasB98/aws_severless_project/assets/157819544/f488cf8f-487b-4577-a521-be719e0c5a91">
+This is the historical weather pipeline.
+
+<img width="1071" alt="image" src="https://github.com/user-attachments/assets/5b030034-918a-4cc4-ad85-ba2f608b7c71">
+
+
+The workflow consists of the Glue crawler, ETL Jobs written in Python, and Triggers between them.
+It also has a Starting Trigger that can be connected to EventBridge events.
+
+An ETL job example written in Python, which wraps a SQL query in order to create the Parquet historical weather table.
+
+**create-parquet-historical-weather-table**
+'''
+
+	import boto3
+	
+	client = boto3.client('athena')
+	
+	# Refresh the table
+	queryStart = client.start_query_execution(
+	    QueryString="""
+	    CREATE TABLE IF NOT EXISTS open_meteo_historical_weather_data_parquet_tbl WITH
+	    (
+	        external_location='s3://weather-table-pqt-nikolas/',
+	        format='PARQUET',
+	        write_compression='SNAPPY',
+	        partitioned_by = ARRAY['capture_year', 'capture_month', 'capture_day', 'capture_hour']
+	    )
+	    AS
+	    SELECT
+	        latitude,
+	        longitude,
+	        time,
+	        temp_c_mean,
+	        ROUND((temp_c_mean * 9/5) + 32, 2) AS temp_f_mean, -- Temperature in Fahrenheit (rounded to 2 decimals)
+	        temp_c_max,
+	        temp_c_min,
+	        ROUND(daylight_duration / 3600, 2) AS daylight_duration_hours, -- Convert from seconds to hours
+	        ROUND(sunshine_duration / 3600, 2) AS sunshine_duration_hours, -- Convert from seconds to hours
+	        precipitation_sum,
+	        wind_speed_max,
+	        wind_gusts_max,
+	        row_ts,
+	        partition_0 AS capture_year,
+	        partition_1 AS capture_month,
+	        partition_2 AS capture_day,
+	        partition_3 AS capture_hour
+	    FROM "de_proj_database"."weather_data_bucket_oct_2024"
+	    
+	    ;
+	    """,
+	    QueryExecutionContext={
+	        'Database': 'de_proj_database'
+	    },
+	    ResultConfiguration={
+	        'OutputLocation': 's3://store-query-results-for-athena-may-2024-nickolas'
+	    }
+	)
+	
+	print(f"Query execution started. Check Athena console for details.")
+"""
+
+This ETL script uses Amazon Athena and S3 to create a table for storing the processed weather data in a Parquet format. It checks if a table named open_meteo_historical_weather_data_parquet_tbl exists, and if not, it creates it. It selects data from an existing table and transforms it —for example, converting temperatures to Fahrenheit and converting durations from seconds to hours. The data is partitioned by year, month, day, and hour, based on the capture time. Finally, the output is stored in the S3 bucket for processed data.
+
+The Forecast Weather Pipeline is different as it gets triggered every time an object has been added in the S3 bucket designated for the forecast weather data captured by the API using the get-real-time-weather-data function. This triggering rule helps ensure that the weekly forecast data has been successfully reached their S3 destination bucket after getting consumed by the Data Firehose. This is called an Event based trigger. After this event, the workflow is automatically running to reach the production level table.
+
+<img width="1098" alt="image" src="https://github.com/user-attachments/assets/b3fb632f-520d-44a8-9203-68aac32d1c18">
+
+This is a snapshot of the EventBridge rule that triggers our pipeline.
+
+<img width="1043" alt="image" src="https://github.com/user-attachments/assets/1a60d965-8c00-42fe-9ac0-73b3ef9337b8">
+
+
 
 **Amazon Athena:**
 
