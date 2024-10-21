@@ -63,7 +63,7 @@ weather-table-pqt-nikolas/: This bucket contain the historical weather data that
 
 forecast-weather-table-pqt-nikolas/: This bucket holds the transformed forecast weather data stored in Parquet format. Each week, a new subfolder is created by the Firehose inside this s3, reffering to the month and week the new weekly data was captured by the API. This way, the next week's forecast weather is being added every 7 days in a different week subfolder inside the same month / year.
 
-#### Production lebel Data Buckets:
+#### Production-level Data Buckets:
 
 These buckets hold the final, transformed weather data stored in Parquet format, making the final product of the ETL Workflow. This is the data readily available for querying and analysis with Athena and potentially for visualization with Grafana.
 
