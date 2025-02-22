@@ -22,6 +22,193 @@ This project leverages a serverless architecture on AWS to build two data pipeli
 The data originates from the [(https://open-meteo.com/)] API ([([[https://open-meteo.com/en/docs](https://open-meteo.com/en/docs/historical-weather-api#latitude=53.2192&longitude=6.5667&start_date=2024-03-01&end_date=2024-05-15&hourly=&daily=temperature_2m_max,temperature_2m_min,temperature_2m_mean,daylight_duration,sunshine_duration,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=Europe%2FBerlin](https://archive-api.open-meteo.com/v1/archive?latitude=53.2192&longitude=6.5667&start_date=2024-03-01&end_date=2024-05-15&daily=temperature_2m_max,temperature_2m_min,temperature_2m_mean,daylight_duration,sunshine_duration,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=Europe%2FBerlin)))]). This API provides access to historical weather data for Groningen,NL the city I obtained my MSc degree. 
 Open-meteo provides access through APIs to both historical and real-time weather data for various locations around the world.
 
+
+**Grafana:**
+
+Grafana is the visualization tool that connects to Athena, enabling the creation of interactive dashboards to explore the weather data insights. You can leverage standard SQL queries within Grafana to visualize the processed data. The queries are exectuted directly in Athena and can be found also in the Recent Queries tab.
+
+
+The static snapshots as pdf files for a quick overview:
+
+### Severless AWS Project Groningen's Historical Weather Dashboard
+
+<img width="1426" alt="image" src="https://github.com/user-attachments/assets/1e2b6406-1e6f-4097-beca-a33f8edd2dcc">
+
+<img width="1402" alt="image" src="https://github.com/user-attachments/assets/6a071520-4511-45cd-9384-60a433fbfde6">
+
+<img width="1411" alt="image" src="https://github.com/user-attachments/assets/d5ac6cc5-dc27-4a95-9915-b1418466d511">
+
+<img width="1405" alt="image" src="https://github.com/user-attachments/assets/502c6c94-994e-4125-b0e5-edfd9bd859ac">
+
+<img width="1410" alt="image" src="https://github.com/user-attachments/assets/f2b1d0d2-2e5d-4c99-921a-4cda556a7ead">
+
+<img width="1409" alt="image" src="https://github.com/user-attachments/assets/fa8a3fc0-38a5-4eb3-b39a-710ae98c48aa">
+
+## Insights Deep Dive
+
+**Historical Dashboard - Part 1**
+
+**Category 1: Temperature Trends**
+
+**Main Insight 1: Temperature Fluctuation Over Time**
+
+* **Finding:** The temperature in Groningen fluctuates significantly over the observed period (March 14, 2024, to October 10, 2024), with visible peaks and troughs.
+* **Supporting Data:** The top graph ("temp.c_mean," "temp.c_max," "temp.c_min") shows variations in temperature.
+* **Implication:** This reflects typical seasonal changes and weather variability in the region.
+
+**Category 2: Daylight and Sunshine Duration**
+
+**Main Insight 1: Correlation Between Daylight and Sunshine**
+
+* **Finding:** Daylight duration consistently exceeds sunshine duration, with sunshine duration being more variable due to factors like cloud cover.
+* **Supporting Data:** The "Daylight Duration vs Sunshine Duration (hours)" graph shows daylight forming a smooth curve, while sunshine duration fluctuates.
+* **Implication:** This highlights the impact of weather conditions on sunshine availability.
+
+**Main Insight 2: Seasonal Variation in Daylight and Sunshine**
+
+* **Finding:** Both daylight and sunshine duration peak in summer and decline in spring and autumn.
+* **Supporting Data:** The graph shows longer durations in summer months.
+* **Implication:** This aligns with expected seasonal patterns in daylight and solar radiation.
+
+**Category 3: Wind Speed and Gusts**
+
+**Main Insight 1: Wind Gusts Exceed Wind Speed**
+
+* **Finding:** Maximum wind gusts (40.4 km/h) are significantly higher than maximum wind speed (22.1 km/h).
+* **Supporting Data:** The "Max Wind Speed vs Max Wind Gusts" section displays these values.
+* **Implication:** This indicates variable wind conditions, with occasional strong gusts.
+
+**Main Insight 2: Infrequent Extreme Wind Conditions**
+
+* **Finding:** Extreme wind gusts (>60 km/h) are rare, and extreme wind speeds (>40 km/h) occur occasionally.
+* **Supporting Data:** The "Extreme Wind Gusts Conditions (>60 km/h)" and "Extreme Wind Speed Conditions (>40 km/h)" graphs show these trends.
+* **Implication:** Very strong winds are not common, but sustained strong winds occur periodically.
+
+**Category 4: Precipitation**
+
+**Main Insight 1: Sporadic Precipitation Events**
+
+* **Finding:** Precipitation occurs sporadically, with a few notable peaks.
+* **Supporting Data:** The "Precipitation" graph shows several spikes.
+* **Implication:** Rainfall is concentrated in specific events rather than being evenly distributed.
+
+**Main Insight 2: High Precipitation Peaks**
+
+* **Finding:** A couple of very high precipitation peaks indicate heavy rain events.
+* **Supporting Data:** Two significant spikes are visible in the precipitation graph.
+* **Implication:** These events could lead to localized flooding or waterlogging.
+
+**Category 5: Sunshine to Daylight Ratio**
+
+**Main Insight 1: Variable Sunshine Ratio**
+
+* **Finding:** The ratio of sunshine to daylight fluctuates significantly, indicating highly variable cloud cover.
+* **Supporting Data:** The "Sunshine To Daylight Ratio" graph shows frequent dips and peaks.
+* **Implication:** This suggests inconsistent weather patterns affecting sunshine availability.
+
+### Severless AWS Project Groningen's Weekly Forecast Weather Dashboard
+
+<img width="1418" alt="image" src="https://github.com/user-attachments/assets/7a20267e-1975-443c-b871-55f6599f4877">
+
+<img width="1404" alt="image" src="https://github.com/user-attachments/assets/0c45cd17-6c1d-4285-815d-c4d89e4ccf7e">
+
+<img width="1410" alt="image" src="https://github.com/user-attachments/assets/24814b23-c459-4bf6-9f7b-d940bdb1a6db">
+
+<img width="1400" alt="image" src="https://github.com/user-attachments/assets/d7bc9b35-b696-474d-99dd-974c4bf2a403">
+
+**Weekly Forecast Dashboard**
+
+**Category 1: Temperature Forecast**
+
+**Main Insight 1: Temperature Range Over the Week**
+
+* **Finding:** The forecast shows a consistent temperature range, with both maximum and minimum temperatures varying.
+* **Supporting Data:** The "This week's Temperature (C): Max vs Min" graph displays these trends.
+* **Implication:** This helps users plan for expected temperature fluctuations.
+
+**Main Insight 2: Temperature Decrease Over the Week**
+
+* **Finding:** Temperatures are forecasted to decrease gradually as the week progresses.
+* **Supporting Data:** Both max and min temperature graphs show a downward trend.
+* **Implication:** A shift toward colder weather is expected by the end of the week.
+
+**Category 2: Daylight and Sunshine Forecast**
+
+**Main Insight 1: Daylight and Sunshine Duration Patterns**
+
+* **Finding:** Daylight duration consistently exceeds sunshine duration, with sunshine being more variable.
+* **Supporting Data:** The "This week's Daylight Duration vs Sunshine Duration (hours)" graph illustrates this.
+* **Implication:** Cloud cover and other factors will affect sunshine availability.
+
+**Main Insight 2: Daylight and Sunshine Duration Values**
+
+* **Finding:** Average daylight duration is 9.93 hours, while sunshine duration is 8.37 hours.
+* **Supporting Data:** The graph and numerical values provide this information.
+* **Implication:** Users can expect approximately 1.5 hours of cloud cover or reduced sunshine daily.
+
+**Category 3: Wind Speed and Gusts Forecast**
+
+**Main Insight 1: Similar Wind Speed and Gusts**
+
+* **Finding:** Maximum wind speed (26.4 km/h) and gusts (25.9 km/h) are relatively similar.
+* **Supporting Data:** The "This week's Max Wind Speed vs Max Wind Gusts" section displays these values.
+* **Implication:** Wind conditions are expected to be consistent, with no significant gusts.
+
+**Category 4: Sunshine to Daylight Ratio Forecast**
+
+**Main Insight 1: Variable Sunshine Ratio**
+
+* **Finding:** The sunshine to daylight ratio fluctuates throughout the week.
+* **Supporting Data:** The "This week's Sunshine to Daylight Ratio" graph shows variability.
+* **Implication:** Cloud cover and weather conditions will vary, affecting sunshine availability.
+
+**Recommendations**
+
+* **Seasonal Planning:** Use temperature and daylight trends to plan outdoor activities, agriculture, and energy consumption.
+* **Preparedness for Extreme Weather:** Monitor precipitation and wind forecasts to prepare for heavy rain or strong winds.
+* **Energy Efficiency:** Leverage sunshine duration data to optimize solar energy usage.
+* **Infrastructure Resilience:** Use wind and precipitation insights to design infrastructure that can withstand extreme weather events.
+* **Public Awareness:** Share forecast data with the public to help them plan for weather changes and stay safe.
+
+**Assumptions and Caveats**
+
+* **Assumption 1:** Data from the Open-Meteo API is accurate and up-to-date.
+* **Assumption 2:** The data reflects only Groningen, NL, and may not be applicable to other regions.
+* **Assumption 3:** Forecast data is subject to change based on real-time weather conditions.
+
+**Tools and Technologies Used**
+
+* **Data Ingestion:** AWS Lambda, Kinesis Firehose
+* **Data Storage:** Amazon S3
+* **Data Transformation:** AWS Glue (Crawler, ETL Jobs)
+* **Data Querying:** Amazon Athena
+* **Visualization:** Grafana
+* **Monitoring:** AWS CloudWatch Logs
+* **CI/CD:** AWS EventBridge, AWS DevOps
+
+
+### Pipeline Functionality
+
+The pipeline is designed to automate the entire data flow, from ingestion to analysis, ensuring efficiency and accuracy throughout the process.
+
+First, a Lambda function is responsible for data ingestion, periodically (or via an event) fetching weather data from the chosen API. Once the data is fetched, it is streamed into Amazon Kinesis Firehose, which acts as a data transport service to continuously deliver this data into an S3 bucket for raw storage.
+
+After the data lands in the S3 bucket, a Glue Crawler automatically runs to discover the schema and define it in the Glue Data Catalog. This automated schema discovery ensures that the data is well-structured and readily accessible for transformation and analysis.
+
+The data transformation process is handled by AWS Glue ETL jobs. These jobs cleanse and transform the data, preparing it for analysis. During transformation, comprehensive data quality checks are performed to validate the data and ensure its integrity. These checks include completeness checks and extreme value checks. Completeness checks verify whether any key columns have missing values, such as temperature, daylight duration, sunshine duration, precipitation, wind speed, wind gusts, and row timestamps. Extreme value checks identify values that fall outside expected ranges, such as temperatures below -30°C or above 50°C, wind speeds exceeding 100 km/h, and negative precipitation values. The data is then saved to a new table in S3, stored in the Parquet format, which is optimized for analytics.
+
+For analysis, Amazon Athena can be used to query the processed data with standard SQL. The results can be visualized through Grafana, enabling interactive exploration of the weather data. Additionally, AWS CloudWatch Logs are utilized to monitor the Lambda functions, Glue ETL jobs, and other components of the pipeline to ensure reliable operation and to capture any potential issues.
+
+### Benefits 
+
+The serverless architecture allows the system to scale automatically with the volume of incoming data, eliminating the need for manual infrastructure management. This flexibility makes the pipeline suitable for different data sources and future modifications, as it can be easily adapted to handle additional weather APIs or different types of data.
+
+Automation is a major advantage of this architecture. The pipeline automates data ingestion, transformation, and storage, reducing manual intervention and minimizing the possibility of human error. The use of AWS Glue, Kinesis Firehose, and Lambda ensures that each step is triggered automatically, leading to a seamless flow of data.
+
+The processed data is stored in a Parquet format, which is highly optimized for efficient querying. This means that data analysis using Amazon Athena is faster and more cost-efficient, making it well-suited for large-scale weather data analysis. By integrating Athena with Grafana, the pipeline also enables the creation of insightful visualizations, providing a clear understanding of weather patterns over time.
+
+## Optional Reading: Detailed Architecture of both Pipelines
+
 **AWS Lambda Functions:**
 
 **get-batch-weather-data:** This serverless function triggers manually. It pre-processes and prepares the data before sending it to the Kinesis Firehose for batch streaming of historical weather data.
@@ -183,185 +370,6 @@ This is a snapshot of the EventBridge rule that triggers our pipeline.
 This serverless interactive query service allows us to analyze the transformed weather data using standard SQL queries.
 
 <img width="1360" alt="image" src="https://github.com/user-attachments/assets/87d6c4f8-c023-44f4-bba3-2620e950c0cc">
-
-
-**Grafana:**
-
-Grafana is the visualization tool that connects to Athena, enabling the creation of interactive dashboards to explore the weather data insights. You can leverage standard SQL queries within Grafana to visualize the processed data. The queries are exectuted directly in Athena and can be found also in the Recent Queries tab.
-
-
-The static snapshots as pdf files for a quick overview:
-
-### Severless AWS Project Groningen's Historical Weather Dashboard
-
-<img width="1426" alt="image" src="https://github.com/user-attachments/assets/1e2b6406-1e6f-4097-beca-a33f8edd2dcc">
-
-<img width="1402" alt="image" src="https://github.com/user-attachments/assets/6a071520-4511-45cd-9384-60a433fbfde6">
-
-<img width="1411" alt="image" src="https://github.com/user-attachments/assets/d5ac6cc5-dc27-4a95-9915-b1418466d511">
-
-<img width="1405" alt="image" src="https://github.com/user-attachments/assets/502c6c94-994e-4125-b0e5-edfd9bd859ac">
-
-<img width="1410" alt="image" src="https://github.com/user-attachments/assets/f2b1d0d2-2e5d-4c99-921a-4cda556a7ead">
-
-<img width="1409" alt="image" src="https://github.com/user-attachments/assets/fa8a3fc0-38a5-4eb3-b39a-710ae98c48aa">
-
-## Insights Deep Dive
-
-**Historical Dashboard - Part 1**
-
-**Category 1: Temperature Trends**
-
-**Main Insight 1: Temperature Fluctuation Over Time**
-
-* **Finding:** The temperature in Groningen, as represented by mean, maximum, and minimum values, fluctuates significantly over the observed period (March 14, 2024, to October 10, 2024).
-* **Supporting Data:** The top graph ("temp.c_mean," "temp.c_max," "temp.c_min") clearly shows the variations in temperature, with visible peaks and troughs.
-* **Implication:** This indicates the typical seasonal changes and weather variability expected in this region.
-
-**Category 2: Daylight and Sunshine Duration**
-
-**Main Insight 1: Correlation Between Daylight and Sunshine**
-
-* **Finding:** There's a noticeable correlation between daylight duration and sunshine duration. Daylight duration is always greater than sunshine duration.
-* **Supporting Data:** The "Daylight Duration vs Sunshine Duration (hours)" graph shows both daylight and sunshine duration over time. Daylight duration forms a smooth curve, while sunshine duration is more variable.
-* **Implication:** This reflects the expected relationship where sunshine duration is influenced by factors like cloud cover, but generally follows the trend of daylight hours.
-
-**Main Insight 2: Seasonal Variation in Daylight and Sunshine**
-
-* **Finding:** Both daylight and sunshine duration show a clear seasonal pattern, with longer durations in the summer months and shorter durations in the spring and autumn.
-* **Supporting Data:** The "Daylight Duration vs Sunshine Duration (hours)" graph shows the peak of both daylight and sunshine around the summer months.
-* **Implication:** This is consistent with the expected seasonal changes in daylight hours and solar radiation.
-
-**Category 3: Wind Speed and Gusts**
-
-**Main Insight 1: Wind Gusts Exceed Wind Speed**
-
-* **Finding:** The maximum wind gusts (40.4 km/h) are significantly higher than the maximum wind speed (22.1 km/h).
-* **Supporting Data:** The "Max Wind Speed vs Max Wind Gusts" section displays the numerical values for both wind speed and gusts.
-* **Implication:** This indicates the presence of variable wind conditions, with occasional strong gusts exceeding the sustained wind speed.
-
-**Category 4: Average Daylight and Sunshine**
-
-**Main Insight 1: Average Daylight vs. Sunshine**
-
-* **Finding:** The average daylight duration is 14.7 hours, while the average sunshine duration is 9.74 hours.
-* **Supporting Data:** The "Mean Daylight vs Sunshine Duration" section displays the numerical values for both average durations.
-* **Implication:** This highlights that, on average, there are several hours of cloud cover or other factors that reduce the amount of direct sunshine.
-
-**Historical Dashboard - Part 2**
-
-**Category 1: Sunshine to Daylight Ratio**
-
-**Main Insight 1: Variable Sunshine Ratio**
-
-* **Finding:** The ratio of sunshine duration to daylight duration fluctuates significantly throughout the observed period.
-* **Supporting Data:** The "Sunshine To Daylight Ratio" graph shows a highly variable percentage, with frequent dips and peaks.
-* **Implication:** This indicates that cloud cover and other factors affecting sunshine are highly variable in Groningen during this period.
-  
-**Category 2: Precipitation**
-
-**Main Insight 1: Sporadic Precipitation Events**
-
-* **Finding:** Precipitation events occur sporadically, with a few notable peaks.
-* **Supporting Data:** The "Precipitation" graph shows several spikes, indicating periods of higher precipitation.
-* **Implication:** This suggests that rainfall is not evenly distributed but rather concentrated in specific events.
-
-**Main Insight 2: High Precipitation Peaks**
-
-* **Finding:** There are a couple of very high peaks in precipitation.
-* **Supporting Data:** There are two very high peaks in the precipitation graph.
-* **Implication:** This means that there were a couple of very heavy rain events.
-
-**Category 3: Extreme Wind Conditions**
-
-**Main Insight 1: Infrequent Extreme Wind Gusts**
-
-* **Finding:** Extreme wind gusts (over 60 km/h) are relatively infrequent during the observed period.
-* **Supporting Data:** The "Extreme Wind Gusts Conditions (>60 km/h)" graph shows that the threshold is rarely exceeded.
-* **Implication:** This suggests that very strong wind gusts are not a common occurrence.
-
-**Main Insight 2: Occasional Extreme Wind Speeds**
-
-* **Finding:** Extreme wind speeds (over 40 km/h) occur more frequently than extreme wind gusts but are still relatively occasional.
-* **Supporting Data:** The "Extreme Wind Speed Conditions (>40 km/h)" graph shows that the threshold is exceeded a few times.
-* **Implication:** This suggests that while very strong sustained winds are not constant, they do occur periodically.
-
-### Severless AWS Project Groningen's Weekly Forecast Weather Dashboard
-
-<img width="1418" alt="image" src="https://github.com/user-attachments/assets/7a20267e-1975-443c-b871-55f6599f4877">
-
-<img width="1404" alt="image" src="https://github.com/user-attachments/assets/0c45cd17-6c1d-4285-815d-c4d89e4ccf7e">
-
-<img width="1410" alt="image" src="https://github.com/user-attachments/assets/24814b23-c459-4bf6-9f7b-d940bdb1a6db">
-
-<img width="1400" alt="image" src="https://github.com/user-attachments/assets/d7bc9b35-b696-474d-99dd-974c4bf2a403">
-
-**Weekly Forecast Dashboard - Part 1**
-
-**Category 1: Temperature Forecast**
-
-**Main Insight 1: Temperature Range Over the Week**
-
-* **Finding:** The forecast shows a clear temperature range throughout the week, with both maximum and minimum temperatures varying.
-* **Supporting Data:** The "This week's Temperature (C): Max vs Min" graph displays the maximum and minimum temperatures, showing a consistent range over the forecasted days.
-* **Implication:** This provides users with an understanding of the expected temperature fluctuation within the week, which is essential for planning.
-
-**Main Insight 2: Temperature Decrease Over the Week**
-
-* **Finding:** The temperature forecast shows a trend of decreasing temperatures as the week progresses.
-* **Supporting Data:** The graphs of both max and min temperatures shows a gradual downward trend from the begining of the week to the end of the week.
-* **Implication:** This indicates a potential shift towards colder weather as the week advances.
-
-**Category 2: Daylight and Sunshine Forecast**
-
-**Main Insight 1: Daylight and Sunshine Duration Patterns**
-
-* **Finding:** The forecast shows the expected patterns of daylight and sunshine duration, with daylight duration consistently exceeding sunshine duration.
-* **Supporting Data:** The "This week's Daylight Duration vs Sunshine Duration (hours)" graph illustrates both daylight and sunshine duration, showing that daylight hours are consistently longer.
-* **Implication:** This aligns with the understanding that sunshine duration is affected by cloud cover and other factors, while daylight duration follows a more predictable pattern.
-
-**Main Insight 2: Daylight and Sunshine Duration Values**
-
-* **Finding:** The forecast provides specific numerical values for average daylight and sunshine duration, with 9.93 hours of daylight and 8.37 hours of sunshine.
-* **Supporting Data:** The "This week's Daylight Duration vs Sunshine Duration (hours)" section displays these numerical values.
-* **Implication:** This gives users precise information about the expected amount of daylight and sunshine, which can be useful for planning outdoor activities.
-
-**Weekly Forecast Dashboard - Part 2**
-
-**Category 1: Wind Speed and Gusts Forecast**
-
-**Main Insight 1: Similar Wind Speed and Gusts**
-
-* **Finding:** The forecast shows that the maximum wind speed and maximum wind gusts are relatively similar, with wind speed at 26.4 km/h and wind gusts at 25.9 km/h.
-* **Supporting Data:** The "This week's Max Wind Speed vs Max Wind Gusts" section displays the numerical values for both wind speed and gusts.
-* **Implication:** This indicates that the wind conditions are expected to be relatively consistent, with gusts not significantly exceeding the sustained wind speed.
-
-**Category 2: Sunshine to Daylight Ratio Forecast**
-
-**Main Insight 1: Variable Sunshine Ratio**
-
-* **Finding:** The forecast shows a fluctuating sunshine to daylight ratio throughout the week.
-* **Supporting Data:** The "This week's Sunshine to Daylight Ratio" graph shows variability
-
-### Pipeline Functionality
-
-The pipeline is designed to automate the entire data flow, from ingestion to analysis, ensuring efficiency and accuracy throughout the process.
-
-First, a Lambda function is responsible for data ingestion, periodically (or via an event) fetching weather data from the chosen API. Once the data is fetched, it is streamed into Amazon Kinesis Firehose, which acts as a data transport service to continuously deliver this data into an S3 bucket for raw storage.
-
-After the data lands in the S3 bucket, a Glue Crawler automatically runs to discover the schema and define it in the Glue Data Catalog. This automated schema discovery ensures that the data is well-structured and readily accessible for transformation and analysis.
-
-The data transformation process is handled by AWS Glue ETL jobs. These jobs cleanse and transform the data, preparing it for analysis. During transformation, comprehensive data quality checks are performed to validate the data and ensure its integrity. These checks include completeness checks and extreme value checks. Completeness checks verify whether any key columns have missing values, such as temperature, daylight duration, sunshine duration, precipitation, wind speed, wind gusts, and row timestamps. Extreme value checks identify values that fall outside expected ranges, such as temperatures below -30°C or above 50°C, wind speeds exceeding 100 km/h, and negative precipitation values. The data is then saved to a new table in S3, stored in the Parquet format, which is optimized for analytics.
-
-For analysis, Amazon Athena can be used to query the processed data with standard SQL. The results can be visualized through Grafana, enabling interactive exploration of the weather data. Additionally, AWS CloudWatch Logs are utilized to monitor the Lambda functions, Glue ETL jobs, and other components of the pipeline to ensure reliable operation and to capture any potential issues.
-
-### Benefits 
-
-The serverless architecture allows the system to scale automatically with the volume of incoming data, eliminating the need for manual infrastructure management. This flexibility makes the pipeline suitable for different data sources and future modifications, as it can be easily adapted to handle additional weather APIs or different types of data.
-
-Automation is a major advantage of this architecture. The pipeline automates data ingestion, transformation, and storage, reducing manual intervention and minimizing the possibility of human error. The use of AWS Glue, Kinesis Firehose, and Lambda ensures that each step is triggered automatically, leading to a seamless flow of data.
-
-The processed data is stored in a Parquet format, which is highly optimized for efficient querying. This means that data analysis using Amazon Athena is faster and more cost-efficient, making it well-suited for large-scale weather data analysis. By integrating Athena with Grafana, the pipeline also enables the creation of insightful visualizations, providing a clear understanding of weather patterns over time.
 
 Monitoring is another key benefit. The integration of AWS CloudWatch ensures that the entire pipeline is continuously monitored, capturing details such as Lambda invocation times, Glue job status, and any errors that might occur. This allows for quick identification and resolution of issues, ensuring the system operates smoothly and reliably.
 
