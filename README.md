@@ -206,6 +206,86 @@ The static snapshots as pdf files for a quick overview:
 
 <img width="1409" alt="image" src="https://github.com/user-attachments/assets/fa8a3fc0-38a5-4eb3-b39a-710ae98c48aa">
 
+## Insights Deep Dive
+
+**Historical Dashboard - Part 1**
+
+**Category 1: Temperature Trends**
+
+**Main Insight 1: Temperature Fluctuation Over Time**
+
+* **Finding:** The temperature in Groningen, as represented by mean, maximum, and minimum values, fluctuates significantly over the observed period (March 14, 2024, to October 10, 2024).
+* **Supporting Data:** The top graph ("temp.c_mean," "temp.c_max," "temp.c_min") clearly shows the variations in temperature, with visible peaks and troughs.
+* **Implication:** This indicates the typical seasonal changes and weather variability expected in this region.
+
+**Category 2: Daylight and Sunshine Duration**
+
+**Main Insight 1: Correlation Between Daylight and Sunshine**
+
+* **Finding:** There's a noticeable correlation between daylight duration and sunshine duration. Daylight duration is always greater than sunshine duration.
+* **Supporting Data:** The "Daylight Duration vs Sunshine Duration (hours)" graph shows both daylight and sunshine duration over time. Daylight duration forms a smooth curve, while sunshine duration is more variable.
+* **Implication:** This reflects the expected relationship where sunshine duration is influenced by factors like cloud cover, but generally follows the trend of daylight hours.
+
+**Main Insight 2: Seasonal Variation in Daylight and Sunshine**
+
+* **Finding:** Both daylight and sunshine duration show a clear seasonal pattern, with longer durations in the summer months and shorter durations in the spring and autumn.
+* **Supporting Data:** The "Daylight Duration vs Sunshine Duration (hours)" graph shows the peak of both daylight and sunshine around the summer months.
+* **Implication:** This is consistent with the expected seasonal changes in daylight hours and solar radiation.
+
+**Category 3: Wind Speed and Gusts**
+
+**Main Insight 1: Wind Gusts Exceed Wind Speed**
+
+* **Finding:** The maximum wind gusts (40.4 km/h) are significantly higher than the maximum wind speed (22.1 km/h).
+* **Supporting Data:** The "Max Wind Speed vs Max Wind Gusts" section displays the numerical values for both wind speed and gusts.
+* **Implication:** This indicates the presence of variable wind conditions, with occasional strong gusts exceeding the sustained wind speed.
+
+**Category 4: Average Daylight and Sunshine**
+
+**Main Insight 1: Average Daylight vs. Sunshine**
+
+* **Finding:** The average daylight duration is 14.7 hours, while the average sunshine duration is 9.74 hours.
+* **Supporting Data:** The "Mean Daylight vs Sunshine Duration" section displays the numerical values for both average durations.
+* **Implication:** This highlights that, on average, there are several hours of cloud cover or other factors that reduce the amount of direct sunshine.
+
+**Historical Dashboard - Part 2**
+
+**Category 1: Sunshine to Daylight Ratio**
+
+**Main Insight 1: Variable Sunshine Ratio**
+
+* **Finding:** The ratio of sunshine duration to daylight duration fluctuates significantly throughout the observed period.
+* **Supporting Data:** The "Sunshine To Daylight Ratio" graph shows a highly variable percentage, with frequent dips and peaks.
+* **Implication:** This indicates that cloud cover and other factors affecting sunshine are highly variable in Groningen during this period.
+  
+**Category 2: Precipitation**
+
+**Main Insight 1: Sporadic Precipitation Events**
+
+* **Finding:** Precipitation events occur sporadically, with a few notable peaks.
+* **Supporting Data:** The "Precipitation" graph shows several spikes, indicating periods of higher precipitation.
+* **Implication:** This suggests that rainfall is not evenly distributed but rather concentrated in specific events.
+
+**Main Insight 2: High Precipitation Peaks**
+
+* **Finding:** There are a couple of very high peaks in precipitation.
+* **Supporting Data:** There are two very high peaks in the precipitation graph.
+* **Implication:** This means that there were a couple of very heavy rain events.
+
+**Category 3: Extreme Wind Conditions**
+
+**Main Insight 1: Infrequent Extreme Wind Gusts**
+
+* **Finding:** Extreme wind gusts (over 60 km/h) are relatively infrequent during the observed period.
+* **Supporting Data:** The "Extreme Wind Gusts Conditions (>60 km/h)" graph shows that the threshold is rarely exceeded.
+* **Implication:** This suggests that very strong wind gusts are not a common occurrence.
+
+**Main Insight 2: Occasional Extreme Wind Speeds**
+
+* **Finding:** Extreme wind speeds (over 40 km/h) occur more frequently than extreme wind gusts but are still relatively occasional.
+* **Supporting Data:** The "Extreme Wind Speed Conditions (>40 km/h)" graph shows that the threshold is exceeded a few times.
+* **Implication:** This suggests that while very strong sustained winds are not constant, they do occur periodically.
+
 ### Severless AWS Project Groningen's Weekly Forecast Weather Dashboard
 
 <img width="1418" alt="image" src="https://github.com/user-attachments/assets/7a20267e-1975-443c-b871-55f6599f4877">
@@ -216,7 +296,52 @@ The static snapshots as pdf files for a quick overview:
 
 <img width="1400" alt="image" src="https://github.com/user-attachments/assets/d7bc9b35-b696-474d-99dd-974c4bf2a403">
 
+**Weekly Forecast Dashboard - Part 1**
 
+**Category 1: Temperature Forecast**
+
+**Main Insight 1: Temperature Range Over the Week**
+
+* **Finding:** The forecast shows a clear temperature range throughout the week, with both maximum and minimum temperatures varying.
+* **Supporting Data:** The "This week's Temperature (C): Max vs Min" graph displays the maximum and minimum temperatures, showing a consistent range over the forecasted days.
+* **Implication:** This provides users with an understanding of the expected temperature fluctuation within the week, which is essential for planning.
+
+**Main Insight 2: Temperature Decrease Over the Week**
+
+* **Finding:** The temperature forecast shows a trend of decreasing temperatures as the week progresses.
+* **Supporting Data:** The graphs of both max and min temperatures shows a gradual downward trend from the begining of the week to the end of the week.
+* **Implication:** This indicates a potential shift towards colder weather as the week advances.
+
+**Category 2: Daylight and Sunshine Forecast**
+
+**Main Insight 1: Daylight and Sunshine Duration Patterns**
+
+* **Finding:** The forecast shows the expected patterns of daylight and sunshine duration, with daylight duration consistently exceeding sunshine duration.
+* **Supporting Data:** The "This week's Daylight Duration vs Sunshine Duration (hours)" graph illustrates both daylight and sunshine duration, showing that daylight hours are consistently longer.
+* **Implication:** This aligns with the understanding that sunshine duration is affected by cloud cover and other factors, while daylight duration follows a more predictable pattern.
+
+**Main Insight 2: Daylight and Sunshine Duration Values**
+
+* **Finding:** The forecast provides specific numerical values for average daylight and sunshine duration, with 9.93 hours of daylight and 8.37 hours of sunshine.
+* **Supporting Data:** The "This week's Daylight Duration vs Sunshine Duration (hours)" section displays these numerical values.
+* **Implication:** This gives users precise information about the expected amount of daylight and sunshine, which can be useful for planning outdoor activities.
+
+**Weekly Forecast Dashboard - Part 2**
+
+**Category 1: Wind Speed and Gusts Forecast**
+
+**Main Insight 1: Similar Wind Speed and Gusts**
+
+* **Finding:** The forecast shows that the maximum wind speed and maximum wind gusts are relatively similar, with wind speed at 26.4 km/h and wind gusts at 25.9 km/h.
+* **Supporting Data:** The "This week's Max Wind Speed vs Max Wind Gusts" section displays the numerical values for both wind speed and gusts.
+* **Implication:** This indicates that the wind conditions are expected to be relatively consistent, with gusts not significantly exceeding the sustained wind speed.
+
+**Category 2: Sunshine to Daylight Ratio Forecast**
+
+**Main Insight 1: Variable Sunshine Ratio**
+
+* **Finding:** The forecast shows a fluctuating sunshine to daylight ratio throughout the week.
+* **Supporting Data:** The "This week's Sunshine to Daylight Ratio" graph shows variability
 
 ### Pipeline Functionality
 
