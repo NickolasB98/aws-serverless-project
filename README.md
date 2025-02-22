@@ -157,7 +157,7 @@ The static snapshots as pdf files for a quick overview:
 * **Supporting Data:** The "This week's Sunshine to Daylight Ratio" graph shows variability.
 * **Implication:** Cloud cover and weather conditions will vary, affecting sunshine availability.
 
-**Recommendations**
+## Recommendations
 
 * **Seasonal Planning:** Use temperature and daylight trends to plan outdoor activities, agriculture, and energy consumption.
 * **Preparedness for Extreme Weather:** Monitor precipitation and wind forecasts to prepare for heavy rain or strong winds.
@@ -165,13 +165,13 @@ The static snapshots as pdf files for a quick overview:
 * **Infrastructure Resilience:** Use wind and precipitation insights to design infrastructure that can withstand extreme weather events.
 * **Public Awareness:** Share forecast data with the public to help them plan for weather changes and stay safe.
 
-**Assumptions and Caveats**
+## Assumptions and Caveats
 
 * **Assumption 1:** Data from the Open-Meteo API is accurate and up-to-date.
 * **Assumption 2:** The data reflects only Groningen, NL, and may not be applicable to other regions.
 * **Assumption 3:** Forecast data is subject to change based on real-time weather conditions.
 
-**Tools and Technologies Used**
+## Tools and Technologies Used
 
 * **Data Ingestion:** AWS Lambda, Kinesis Firehose
 * **Data Storage:** Amazon S3
@@ -182,7 +182,7 @@ The static snapshots as pdf files for a quick overview:
 * **CI/CD:** AWS EventBridge, AWS DevOps
 
 
-### Pipeline Functionality
+## Pipeline Functionality
 
 The pipeline is designed to automate the entire data flow, from ingestion to analysis, ensuring efficiency and accuracy throughout the process.
 
