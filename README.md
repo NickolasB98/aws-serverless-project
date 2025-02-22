@@ -27,6 +27,7 @@ Open-meteo provides access through APIs to both historical and real-time weather
 
 Grafana is the visualization tool that connects to Athena, enabling the creation of interactive dashboards to explore the weather data insights. You can leverage standard SQL queries within Grafana to visualize the processed data. The queries are exectuted directly in Athena and can be found also in the Recent Queries tab.
 
+## Insights Deep Dive
 
 The static snapshots as pdf files for a quick overview:
 
@@ -43,10 +44,6 @@ The static snapshots as pdf files for a quick overview:
 <img width="1410" alt="image" src="https://github.com/user-attachments/assets/f2b1d0d2-2e5d-4c99-921a-4cda556a7ead">
 
 <img width="1409" alt="image" src="https://github.com/user-attachments/assets/fa8a3fc0-38a5-4eb3-b39a-710ae98c48aa">
-
-## Insights Deep Dive
-
-**Historical Dashboard - Part 1**
 
 **Category 1: Temperature Trends**
 
@@ -115,8 +112,6 @@ The static snapshots as pdf files for a quick overview:
 <img width="1410" alt="image" src="https://github.com/user-attachments/assets/24814b23-c459-4bf6-9f7b-d940bdb1a6db">
 
 <img width="1400" alt="image" src="https://github.com/user-attachments/assets/d7bc9b35-b696-474d-99dd-974c4bf2a403">
-
-**Weekly Forecast Dashboard**
 
 **Category 1: Temperature Forecast**
 
