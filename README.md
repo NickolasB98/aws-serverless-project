@@ -11,7 +11,7 @@ This project leverages a serverless architecture on AWS to build two data pipeli
 ##### The project's interactive snapshot of Forecast weather visualizations in Grafana: 
 https://nickolasb98.grafana.net/dashboard/snapshot/NuLcpMR0sQ7oEMr2H9Eb5VCskoQEMxzQ
 
-https://nickolasb98.grafana.net/goto/bhweHzpNR?orgId=1
+https://nickolasb98.grafana.net/public-dashboards/766c8a57593e41d1b426623c24d59633
 
 **Here's a breakdown of the key components and their roles:**
 
