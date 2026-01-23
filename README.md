@@ -5,9 +5,6 @@ A Serverless AWS Project fetching weather data from an API, utilizing these AWS 
 
 This project leverages a serverless architecture on AWS to build two data pipelines for weather data.  
 
-##### The project's interactive snapshot of Historical weather visualizations in Grafana: 
-[https://nickolasb98.grafana.net/dashboard/snapshot/m4CRJegtK7BHuHdACZ2LzTgdeiiMYUdi]
-
 ##### The project's interactive snapshot of Forecast weather visualizations in Grafana: 
 https://nickolasb98.grafana.net/dashboard/snapshot/NuLcpMR0sQ7oEMr2H9Eb5VCskoQEMxzQ
 
